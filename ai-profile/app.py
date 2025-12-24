@@ -2,19 +2,12 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from pypdf import PdfReader
-from lib.pushover import push
+from lib.pushover import record_unknown_question, record_user_details
 import gradio as gr
 import json
 
 load_dotenv(dotenv_path="../.env", override=True)
 
-def record_user_details(email, name="Name not provided", notes="not provided"):
-    push(f"Recording {name} with email {email} and notes {notes}")
-    return {"recorded": "ok"}
-
-def record_unknown_question(question):
-    push(f"Recording {question}")
-    return {"recorded": "ok"}
 
 record_user_details_json = {
     "name": "record_user_details",
